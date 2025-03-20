@@ -1,4 +1,5 @@
 import readlineSync from 'readline-sync';
+import battle from './battle.js';
 
 const game = {
   stage: 0
@@ -6,8 +7,8 @@ const game = {
 
 const player = {
   name: "",
+  health: 10,
   inventory: [],
-
 }
 
 const username = readlineSync.question('Введите имя: ');
@@ -17,7 +18,7 @@ console.log("Ночью вы просыпаетесь от жуткого рев
 console.log("У вас есть небольшой рюкзак. Что вы захватите с собой в освободительный поход?");
 const option = readlineSync.question(`
   1. Фонарь
-  2. Букварь
+  2. Справочник по JS
   3. Кабель
   4. Гитара
 (Введите число, например: 1)
@@ -31,7 +32,6 @@ const options1 = {
 }
 
 player.inventory.push(options1[option]);
-console.log(player);
 
 console.log("Вы подходите к зданию колледжа и встречаете охранника");
 console.log("Охранник: Стой! Тебе туда нельзя! Ты можешь пройти только если докажешь знание JavaScript!");
@@ -52,6 +52,7 @@ const guardDialog = {
   4: "Лицо охранника приобретает серый оттенок и вы видите как вам показался скелет"
 }
 
-console.log(guardDialog[option2])
+console.log(guardDialog[option2]);
+console.log(battle(player, { name: 'skeleton', health: 2 }, option2 === 3 ? 'player': 'enemy'));
 
 
