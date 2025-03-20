@@ -12,7 +12,5 @@ export default (player, enemy, turn) => {
     figures[turn].health -= attack;
     turn === 'player' ? turn = 'enemy' : turn = 'player'
   }
-  if (player.health > 0){
-    return 'Вы победили'
-  } return 'Вы проиграли'
+  return player;
 }

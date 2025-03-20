@@ -5,7 +5,7 @@ const game = {
   stage: 0
 }
 
-const player = {
+let player = {
   name: "",
   health: 10,
   inventory: [],
@@ -22,7 +22,7 @@ const option = readlineSync.question(`
   3. Кабель
   4. Гитара
 (Введите число, например: 1)
-`);
+  `);
 
 const options1 = {
   1: "Фонарь",
@@ -53,6 +53,24 @@ const guardDialog = {
 }
 
 console.log(guardDialog[option2]);
-console.log(battle(player, { name: 'skeleton', health: 2 }, option2 === 3 ? 'player': 'enemy'));
+if (option2 === "1") {
+  game.stage = 2;
+} else {
+  player = battle(player, { name: 'skeleton', health: 2 }, option2 === 3 ? 'player' : 'enemy');
+  if (player.health > 0) {
+    console.log(`Вы победили, у вас осталось ${player.health} жизней`)
+    game.stage = 2;
+  } else {
+    console.log(`Вы проиграли!`)
+    game.stage = 'fail'
+  }
+}
+
+// STAGE 2
+if (game.stage === 2) {
+  console.log("Вы вошли в здание колледжа. Куда направитесь?");
+
+}
+
 
 
